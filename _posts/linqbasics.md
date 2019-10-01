@@ -1,6 +1,4 @@
-layout: page
-title: "LINQ Basics"
-permalink: /linqbasics/
+#LINQ
 
 Many languages support concepts of map, filter, and reduce:
 * map is 1:1, and translates elements from one value or type to another
