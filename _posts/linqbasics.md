@@ -2,7 +2,6 @@ layout: page
 title: "LINQ Basics"
 permalink: /linqbasics/
 
-
 Many languages support concepts of map, filter, and reduce:
 * map is 1:1, and translates elements from one value or type to another
 * filter is many:few, and does not translate types or modify values
