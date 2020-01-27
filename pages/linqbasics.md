@@ -3,7 +3,7 @@
 ## Basics
 Many languages support concepts of map, filter, and reduce:
 * map is 1:1, and translates elements from one value or type to another
-* filter is many:few, and does not translate types or modify values
+* filter is many:few, and does not translate types or modify values, but just removes items from a collection
 * reduce is many:1 with sometimes a change in type (e.g.: average)
 
 LINQ's versions of map, filter, and reduce are Select, Where, and Aggregate.  Each takes a predicate representing the transformation or filter criteria.
@@ -39,32 +39,4 @@ LINQ's version of reduce is Aggregate.  The predicate passed to Aggregate takes 
 ```csharp
 var sigma = Enumerable.Range(1, 10).Aggregate((a, b) => a+b);    // 55
 var gamma = Enumerable.Range(1, 10).Aggregate((a, b) => a*b);    // 3628800
-```
-
-## Set Operations
-LINQ exposes [set](https://en.wikipedia.org/wiki/Set_theory) operations that are obviously intuitive.
-Append, is not necessarily a set operation, but combines two enumerables, keeping duplicates.
-```csharp
-var fibonacci = new [] {0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89};
-var pell = new [] {0, 1, 2, 5, 12, 29, 70};
-var silverAndGold = fibonacci.Append(pell);
-// Result: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 0, 1, 2, 5, 12, 29, 70
-```
-
-Distinct is also not a traditional set operation, but is equivalent to the set function in Python.  Distinct removes duplicate items from an enumerable:
-```csharp
-silverAndGold.Distinct();
-// Result: 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 12, 29, 70: 
-```
-
-Union is the combination of values in two sets, which ends up being the combination of Append and Distinct:
-```csharp
-fibonacci.Union(pell);
-// Result: 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 12, 29, 70
-fibonacci.Append(pell).Distinct().SequenceEqual(fibonacci.Union(pell)); // true
-```
-
-Intersect yields the numbers common to both sets:
-```csharp
-fibonacci.Intersect(pell);  // 0, 1, 2, 5
 ```
